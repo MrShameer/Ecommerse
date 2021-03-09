@@ -22,12 +22,9 @@
 	</div>
 </div-->
 
-<!--nav id="navb" class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav id="navb" class="navbar navbar-expand-md navbar-dark bg-dark">
 	<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a class="nav-link" href="#">Satu page</a>
-			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Page Lagi Satu</a>
 			</li>
@@ -58,10 +55,10 @@
 			</li>
 		</ul>
 	</div>
-</nav-->
+</nav>
 
-
-	<nav id="navb" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!---script src="text.js"></script-->
+	<!--nav id="navb" class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
 			<ul class="navbar-nav ml-auto text-center">
 				<li class="nav-item">
@@ -96,7 +93,7 @@
 				</li>    
 			</ul>
 		</div>
-	</nav>
+	</nav-->
 
 
 
@@ -188,21 +185,39 @@
 
 
 	<script>
+	//	var model = document.getElementById("model").model;
+
+		//function boxed(){
+  			//letak bende yg aku nk tukr
+		//}
+
+		function boxed(parent, type, mtl) {
+  parent.traverse((o) => {
+   if (o.isMesh && o.nameID != null) {
+     if (o.nameID == type) {
+          o.material = mtl;
+       }
+   }
+   cosole.log(o.nameID)
+ });
+}
+
 		/*var tag = document.createElement("p");
 	   var text = document.createTextNode("Tutorix is the best e-learning platform");
 	   tag.appendChild(text);
 	   var element = document.getElementById("color");
 	   element.appendChild(tag);
 	   */
+
 		var col = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080', '#ffffff', '#000000'];
 		var i;
 		for (i=0; i < col.length; i++) {
 			var tag = document.createElement("div");
 			tag.className="warna";
-			//tag.style.height = "auto"
+			tag.id=col[i];
 			tag.style.backgroundColor = col[i];
-			var element = document.getElementById("color");
-			element.appendChild(tag);
+			//tag.addEventListener('click', boxed(model,"lace",tag));
+			document.getElementById("color").appendChild(tag);
 		}
 
 	</script>
