@@ -172,7 +172,7 @@
 		requestAnimationFrame(render);
 		//mesh.rotation.y += 0.003;
 		if(model)
-			//model.rotation.y += 0.003;
+			model.rotation.y += 0.003;
 		//controls.update();
 		renderer.render(scene, camera);
 	}
@@ -189,16 +189,18 @@
 
 		//function boxed(){
   			//letak bende yg aku nk tukr
+  			//console.log("sds");
 		//}
 
 		function boxed(parent, type, mtl) {
+			//console.log("sd")
   parent.traverse((o) => {
    if (o.isMesh && o.nameID != null) {
      if (o.nameID == type) {
           o.material = mtl;
        }
    }
-   cosole.log(o.nameID)
+   console.log(o)
  });
 }
 
@@ -217,6 +219,9 @@
 			tag.id=col[i];
 			tag.style.backgroundColor = col[i];
 			//tag.addEventListener('click', boxed(model,"lace",tag));
+			tag.addEventListener('click',function() {
+    boxed(model,"lace",tag);
+});
 			document.getElementById("color").appendChild(tag);
 		}
 
