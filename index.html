@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!--script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script-->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.js"></script>
 	<script src='https://cdn.jsdelivr.net/gh/mrdoob/Three.js@r92/examples/js/loaders/GLTFLoader.js'></script>
@@ -22,11 +23,17 @@
 	</div>
 </div-->
 
+
+<div class="loader-wrapper">
+	  <div class="water"></div>
+</div>
+
+
 <nav id="navb" class="navbar navbar-expand-md navbar-dark bg-dark">
 	<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="#">Page Lagi Satu</a>
+				<a class="nav-link" href="#" >Page Lagi Satu</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Lagi satu gak</a>
@@ -119,14 +126,27 @@
 
 	<!--script src="OrbitControls.js"></script-->
 
+<div class="btn-group dropup" id="dup">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	Solid
+  </button>
+  <div class="dropdown-menu">
+	<a class="dropdown-item" href="#">Solid</a>
+	<a class="dropdown-item" href="#">Pattern</a>
+	<a class="dropdown-item" href="#">Picture</a>
+	<div class="dropdown-divider"></div>
+	<a class="dropdown-item" href="#">Upload</a>
+  </div>
+</div>
+
+
 
 	<script>
-
 		var scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000)
 		camera.position.z=7;
 		var renderer = new THREE.WebGLRenderer({antialias: true});
-		renderer.setClearColor(0xffffff);
+		renderer.setClearColor("#f1f2ed");
 		renderer.setSize(window.innerWidth,window.innerHeight);
 		document.body.appendChild(renderer.domElement);
 		window.addEventListener('resize', () => {
@@ -144,6 +164,8 @@
 			gltf.scene.rotation.set(0,5,0);
 			scene.add( gltf.scene );
 
+
+
 		}, undefined, function ( error ) {
 
 			console.error( error );
@@ -153,65 +175,66 @@
 		var controls = new THREE.OrbitControls( camera, renderer.domElement );
 		controls.update();
 		controls.enablePan = false;
-	//controls.addEventListener( 'change', render );
+		//controls.addEventListener( 'change', render );
 
-	/*var geometry = new THREE.BoxGeometry(1, 1, 1);
-	var material = new THREE.MeshLambertMaterial({color: 0xF7FFF7});
-	var mesh = new THREE.Mesh(geometry, material);
+		/*var geometry = new THREE.BoxGeometry(1, 1, 1);
+		var material = new THREE.MeshLambertMaterial({color: 0xF7FFF7});
+		var mesh = new THREE.Mesh(geometry, material);
 
-	//mesh.position.set(1,2,3);
+		//mesh.position.set(1,2,3);
 
-	scene.add(mesh);*/
+		scene.add(mesh);*/
 
-	var light = new THREE.PointLight(0xFFFFFF, 1, 200)
-	light.position.set(1,0,5);
-	camera.add(light);
-	scene.add(camera);
+		var light = new THREE.PointLight(0xFFFFFF, 1, 200)
+		light.position.set(1,0,5);
+		camera.add(light);
+		scene.add(camera);
 
-	var render = function(){
-		requestAnimationFrame(render);
-		//mesh.rotation.y += 0.003;
-		if(model)
-			model.rotation.y += 0.003;
-		//controls.update();
-		renderer.render(scene, camera);
-	}
+		var render = function(){
+			requestAnimationFrame(render);
+			//mesh.rotation.y += 0.003;
+			if(model)
+				model.rotation.y += 0.003;
+			//controls.update();
+			renderer.render(scene, camera);
+		}
 
-	render();
+		render();
+		//document.getElementsByClassName("loader-wrapper").style.display = "none";
+		//document.getElementById("navb").disabled = false;
 
 	</script>
 
-	<div class="d-flex align-items-center justify-content-center" id="color">
+	<div class="d-flex align-items-center justify-content-center" id="color" >
 
 
 	<script>
+		$(".dropdown-menu a").click(function(){
+
+		$(".btn:first-child").html($(this).text()+' <span class="caret"></span>');
+
+		});
+		//document.getElementById("color").style.display = "block";
 	//	var model = document.getElementById("model").model;
 
 		//function boxed(){
-  			//letak bende yg aku nk tukr
-  			//console.log("sds");
+			//letak bende yg aku nk tukr
+			//console.log("sds");
 		//}
 
 		function boxed(parent, type, mtl) {
 			//console.log("sd")
-  parent.traverse((o) => {
-   if (o.isMesh && o.nameID != null) {
-     if (o.nameID == type) {
-          o.material = mtl;
-       }
-   }
-   console.log(o)
- });
-}
+			parent.traverse((o) => {
+			if (o.isMesh && o.nameID != null) {
+				if (o.nameID == type) {
+				o.material = mtl;
+				}
+			}
+			console.log(o)
+			});
+		}
 
-		/*var tag = document.createElement("p");
-	   var text = document.createTextNode("Tutorix is the best e-learning platform");
-	   tag.appendChild(text);
-	   var element = document.getElementById("color");
-	   element.appendChild(tag);
-	   */
-
-		var col = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080', '#ffffff', '#000000'];
+		var col = ['#4e468b', '#acc0d9', '#273347', '#f1f2f1', '#848487', '#6a6a6a', '#000000', '#ede6de', '#a68054', '#bd6827', '#d7ae5c', '#58333e', '#007c64', '#efa5c8', '#98e2cf', '#b81b36', '#ffd300', '#3a607a', '#00599a', '#00afac', '#ff276b', '#ebd7d1','#3e402a','#5f3c24','#f66316','#dd4399'];
 		var i;
 		for (i=0; i < col.length; i++) {
 			var tag = document.createElement("div");
@@ -220,11 +243,29 @@
 			tag.style.backgroundColor = col[i];
 			//tag.addEventListener('click', boxed(model,"lace",tag));
 			tag.addEventListener('click',function() {
-    boxed(model,"lace",tag);
-});
+				boxed(model,"lace",tag);
+			});
 			document.getElementById("color").appendChild(tag);
 		}
 
 	</script>
+
+
+	<script>
+
+		function next(){
+			$(".loader-wrapper").fadeOut("slow");
+		}
+
+		$(window).on("load",function(){
+			setTimeout(next, 3000);
+			
+		});
+
+	</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
