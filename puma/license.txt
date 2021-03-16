@@ -1,0 +1,11 @@
+Model Information:
+* title:	Puma Shoe Purple 3D Scan
+* source:	https://sketchfab.com/3d-models/puma-shoe-purple-3d-scan-a6d4580e699c4fa1a5967dff3cd4609f
+* author:	grafi (https://sketchfab.com/zdenkoroman)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Puma Shoe Purple 3D Scan" (https://sketchfab.com/3d-models/puma-shoe-purple-3d-scan-a6d4580e699c4fa1a5967dff3cd4609f) by grafi (https://sketchfab.com/zdenkoroman) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
