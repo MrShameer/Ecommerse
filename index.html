@@ -128,14 +128,16 @@
 
 <div class="btn-group dropup" id="dup">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	Solid
+	Laces
   </button>
   <div class="dropdown-menu">
-	<a class="dropdown-item" href="#">Solid</a>
-	<a class="dropdown-item" href="#">Pattern</a>
-	<a class="dropdown-item" href="#">Picture</a>
+	<a class="dropdown-item" role="button">Laces</a>
+	<a class="dropdown-item" role="button">RivetB</a>
+	<a class="dropdown-item" role="button">RivetT</a>
+	<a class="dropdown-item" role="button">Converse</a>
+	<a class="dropdown-item" role="button">Tongue</a>
 	<div class="dropdown-divider"></div>
-	<a class="dropdown-item" href="#">Upload</a>
+	<a class="dropdown-item" href=>Start Over</a>
   </div>
 </div>
 
@@ -143,7 +145,7 @@
 
 	<script>
 		var scene = new THREE.Scene();
-		var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000)
+		var camera = new THREE.PerspectiveCamera(4,window.innerWidth/window.innerHeight,0.1,1000)
 		camera.position.z=7;
 		var renderer = new THREE.WebGLRenderer({antialias: true});
 		renderer.setClearColor("#f1f2ed");
@@ -158,10 +160,10 @@
 
 		var loader = new THREE.GLTFLoader();
 		var model;
-		loader.load('chair.glb', function ( gltf ) {
+		loader.load('shoe.glb', function ( gltf ) {
 			model = gltf.scene;
-			gltf.scene.position.set(0,-1.5,0);
-			gltf.scene.rotation.set(0,5,0);
+			gltf.scene.position.set(0,-0.1,0);
+			gltf.scene.rotation.set(0,-1,0);
 			scene.add( gltf.scene );
 
 
@@ -211,8 +213,8 @@
 	<script>
 		$(".dropdown-menu a").click(function(){
 
-		$(".btn:first-child").html($(this).text()+' <span class="caret"></span>');
-
+			$(".btn:first-child").html($(this).text()+'<span class="caret"></span>');
+			//console.log('<span class="caret"></span>');
 		});
 		//document.getElementById("color").style.display = "block";
 	//	var model = document.getElementById("model").model;
@@ -226,18 +228,20 @@
 			//console.log("sd")
 			parent.traverse((o) => {
 			if (o.isMesh && o.name != null) {
-				if (o.name == type) {
+				//if (o.name == type) {
+				//	o.material = mtl;
+				//}
+				if (o.name.includes(type)) {
 					o.material = mtl;
-
-					//console.log(o.name);
 				}
+
 			}
-			console.log(o);
+			//console.log(o);
 			});
 		}
 
 		var col = ['#4e468b', '#acc0d9', '#273347', '#f1f2f1', '#848487', '#6a6a6a', '#000000', '#ede6de', '#a68054', '#bd6827', '#d7ae5c', '#58333e', '#007c64', '#efa5c8', '#98e2cf', '#b81b36', '#ffd300', '#3a607a', '#00599a', '#00afac', '#ff276b', '#ebd7d1','#3e402a','#5f3c24','#f66316','#dd4399'];
-		let i;
+		let i,x="Laces",new_mtl;
 		for (i=0; i < col.length; i++) {
 			let tag = document.createElement("div");
 			tag.className="warna";
@@ -245,18 +249,18 @@
 			tag.style.backgroundColor = col[i];
 			//tag.addEventListener('click', boxed(model,"lace",tag));
 			//console.log(tag.id);
+			$(".dropdown-menu a").click(function () {
+			    x = $(this).text();
+			});
+
 			tag.addEventListener('click',function() {
 				let color;
-				let new_mtl = new THREE.MeshPhongMaterial({
+				new_mtl = new THREE.MeshPhongMaterial({
           		color: parseInt(tag.id.replace('#','0x')),
           		//shininess: color.shininess ? color.shininess : 10
-          		
         		});
-        		console.log(tag.id);
-				boxed(model,"cushions",new_mtl);
+				boxed(model,x,new_mtl);
 			});
-			
-
 			document.getElementById("color").appendChild(tag);
 		}
 
