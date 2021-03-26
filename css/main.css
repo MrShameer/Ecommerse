@@ -52,8 +52,15 @@ canvas {
 #dup{
 	position: absolute;
     display: block;
-    bottom: 120px;
+    bottom: 85px;
     left: 10px
+}
+
+#toggle-event{
+	position: absolute;
+    
+    bottom: 85px;
+    left: 100px
 }
 
 .loader-wrapper {
