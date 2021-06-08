@@ -1,1 +1,1 @@
-<?php header( 'Location: /kasut.html' ) ; ?>
+<?php header( 'Location: /index.html' ) ; ?>
