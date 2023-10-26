@@ -11,9 +11,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!--script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script-->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js" integrity="sha512-NLtnLBS9Q2w7GKK9rKxdtgL7rA7CAS85uC/0xd9im4J/yOL4F9ZVlv634NAM7run8hz3wI2GabaA6vv8vJtHiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src='https://cdn.jsdelivr.net/gh/mrdoob/Three.js@r92/examples/js/loaders/GLTFLoader.js'></script>
-	<script src='https://threejs.org/examples/js/controls/OrbitControls.js'></script>
+	<script src='https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js'></script>
 </head>
 
 <body>
@@ -137,6 +137,7 @@
 	<input id="toggle-event" type="checkbox" data-toggle="toggle">
 
 	<script>
+		// import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js'
 		var scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(4,window.innerWidth/window.innerHeight,0.1,1000)
 		camera.position.z=7;
